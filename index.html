@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Polygons to Papercraft — A Two-Day Library Program</title>
+<meta name="description" content="Design a custom mask in Blender, then build it by hand out of cardstock. A two-day library program in 3D modeling and papercraft for teens and adults.">
+
+<!--
+  ASSET CHECKLIST — add these files to the site before publishing.
+  Until they exist, every image below falls back to a "coming soon" placeholder automatically,
+  so the page is safe to publish as-is and update later.
+
+  /resources/blender-papercraft-cheatsheet.pdf
+
+  /images/mask-01-front.jpg   /images/mask-01-profile.jpg   (Folkloric & Ornate)
+  /images/mask-02-front.jpg   /images/mask-02-profile.jpg   (Sleek & Futuristic)
+  /images/mask-03-front.jpg   /images/mask-03-profile.jpg   (Downright Silly)
+  /images/mask-04-front.jpg   /images/mask-04-profile.jpg   (Eerie & Elegant)
+  /images/mask-05-front.jpg   /images/mask-05-profile.jpg   (Wild & Colorful)
+  /images/mask-06-front.jpg   /images/mask-06-profile.jpg   (Halloween Special)
+
+  Also search-and-replace anything in [brackets] — dates, times, contact info, registration link —
+  before this page goes live.
+-->
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231D2B2A'/%3E%3Cpolygon points='50,18 82,76 18,76' fill='%2335597F'/%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ---------- Tokens ---------- */
+  :root{
+    --ink: #1D2B2A;
+    --ink-soft: #4B5957;
+    --paper: #F1E9D8;
+    --paper-white: #FBF7EE;
+    --kraft: #E4D6B4;
+    --kraft-dark: #B89968;
+    --pine: #33574C;
+    --pine-light: #4E7A6C;
+    --blueprint: #35597F;
+    --blueprint-light: #5478A0;
+    --accent: var(--blueprint);
+    --max: 1120px;
+    --nav-h: 72px;
+    --radius: 3px;
+  }
+
+  *,*::before,*::after{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,h2,h3,.eyebrow-font,nav,.btn,.tag,.brand{
+    font-family: 'Space Grotesk', -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  h1,h2,h3{ color: var(--ink); font-weight: 600; margin: 0; }
+  h1{ font-size: clamp(2.5rem, 5.6vw, 4.25rem); line-height: 1.04; letter-spacing: -0.01em; }
+  h2{ font-size: clamp(1.85rem, 3.6vw, 2.6rem); line-height: 1.12; }
+  h3{ font-size: 1.2rem; }
+
+  p{ margin: 0 0 1.1em; max-width: 62ch; }
+  p:last-child{ margin-bottom: 0; }
+  a{ color: var(--accent); }
+  a:not(.btn):not(.brand){ text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:not(.btn):not(.brand):hover{ color: var(--ink); }
+
+  ul{ margin: 0; padding: 0; }
+  img{ max-width: 100%; display: block; }
+
+  .wrap{ max-width: var(--max); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem); }
+
+  *:focus-visible{ outline: 2px solid var(--blueprint); outline-offset: 3px; }
+
+  /* ---------- Nav ---------- */
+  .site-nav{
+    position: sticky; top: 0; z-index: 50;
+    background: var(--ink);
+    border-bottom: 1px solid rgba(251,247,238,0.12);
+  }
+  .nav-inner{
+    max-width: var(--max); margin: 0 auto; padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+    height: var(--nav-h);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem;
+  }
+  .brand{
+    color: var(--paper-white); font-weight: 600; font-size: 1.05rem;
+    text-decoration: none; white-space: nowrap;
+  }
+  .nav-links{
+    display: flex; align-items: center; gap: clamp(1rem, 2vw, 1.75rem);
+    list-style: none; margin: 0; padding: 0;
+  }
+  .nav-links a{
+    color: rgba(251,247,238,0.72);
+    text-decoration: none;
+    font-size: 0.92rem;
+    padding: 0.4rem 0.1rem;
+    border-bottom: 2px solid transparent;
+    transition: color .15s ease, border-color .15s ease;
+  }
+  .nav-links a:hover{ color: var(--paper-white); }
+  .nav-links a.active{ color: var(--paper-white); border-bottom-color: var(--blueprint-light); }
+
+  .nav-toggle{
+    display: none;
+    background: none; border: 1px solid rgba(251,247,238,0.35); border-radius: var(--radius);
+    color: var(--paper-white); width: 40px; height: 36px; cursor: pointer;
+    font-size: 1.1rem; line-height: 1;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{ padding: clamp(3rem, 8vw, 6rem) 0 clamp(2.5rem, 6vw, 4rem); }
+  .hero .wrap{
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .hero-copy p.lede{ font-size: 1.2rem; color: var(--ink-soft); }
+  .hero h1{ margin-bottom: 0.55em; }
+
+  .facts-row{
+    display: flex; flex-wrap: wrap; gap: 0; margin-top: 1.75rem;
+    border-top: 1px solid var(--kraft-dark);
+  }
+  .facts-row div{
+    padding: 0.85rem 1.25rem 0.85rem 0;
+    margin-right: 1.25rem;
+    border-right: 1px dashed var(--kraft-dark);
+    font-size: 0.92rem;
+  }
+  .facts-row div:last-child{ border-right: none; }
+  .facts-row strong{ display:block; font-family:'Space Grotesk'; font-weight:600; font-size:0.95rem; margin-bottom:0.15rem;}
+  .facts-row span{ color: var(--ink-soft); }
+
+  .hero-art{ width: 100%; height: auto; }
+
+  /* ---------- Sections / bands ---------- */
+  .band{ padding: clamp(3.5rem, 8vw, 6.5rem) 0; border-top: 1px dashed var(--kraft-dark); }
+  .band-kraft{ background: var(--kraft); }
+  .band-ink{ background: var(--ink); color: var(--paper-white); }
+  .band-ink p{ color: rgba(251,247,238,0.82); }
+  .band-ink h2{ color: var(--paper-white); }
+
+  .section-head{ display:flex; align-items:flex-start; gap: 0.9rem; margin-bottom: 1.75rem; max-width: 46rem; }
+  .marker{
+    flex: none; width: 15px; height: 13px; margin-top: 0.55em;
+    background: var(--accent);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  }
+  .section-head h2{ margin-bottom: 0.35rem; }
+  .section-head .kicker{
+    display:block; font-size: 0.85rem; color: var(--accent); font-weight: 600; margin-bottom: 0.3rem;
+  }
+
+  .two-col{ display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(2rem, 4vw, 3.5rem); align-items: start; }
+
+  .day-tag{
+    display:inline-flex; align-items:center; gap:0.5rem;
+    font-family:'Space Grotesk'; font-weight:600; font-size:0.85rem;
+    color: var(--accent); margin-bottom: 0.75rem;
+  }
+  .day-tag .num{
+    font-size: 1rem; color: var(--paper-white); background: var(--accent);
+    width: 1.7rem; height: 1.7rem; border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .info-card{
+    background: var(--paper-white);
+    border: 1px solid var(--kraft-dark);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.6rem;
+    margin-bottom: 1.25rem;
+  }
+  .band-kraft .info-card{ background: var(--paper); }
+  .info-card h3{ margin-bottom: 0.5rem; color: var(--accent); }
+  .info-card p{ font-size: 0.98rem; margin-bottom: 0; }
+  .info-card + .info-card{ margin-top: -0.4rem; }
+
+  /* ---------- Overview quick facts ---------- */
+  .fact-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; margin: 2.5rem 0 3rem; }
+  .fact-grid .marker{ margin-bottom: 0.9rem; }
+  .fact-grid h3{ margin-bottom: 0.4rem; }
+  .fact-grid p{ font-size: 0.96rem; color: var(--ink-soft); }
+
+  .tbd-card{
+    border: 1px dashed var(--kraft-dark);
+    background: var(--paper-white);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.75rem;
+  }
+  .tbd-card h3{ margin-bottom: 1rem; }
+  .tbd-list{ display:grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 1.5rem; list-style:none; }
+  .tbd-list dt{ font-family:'Space Grotesk'; font-weight:600; font-size:0.82rem; color: var(--ink-soft); margin-bottom:0.15rem;}
+  .tbd-list dd{ margin: 0; font-size: 0.98rem; }
+  .tbd{ font-style: italic; color: var(--ink-soft); border-bottom: 1px dashed var(--kraft-dark); padding-bottom: 1px; }
+
+  /* ---------- Gallery ---------- */
+  .gallery-intro{ max-width: 46rem; margin-bottom: 2.5rem; }
+  .gallery-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
+  .mask-card{
+    background: var(--paper-white); border: 1px solid var(--kraft-dark); border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .mask-card .pair{ display: grid; grid-template-columns: 1fr 1fr; }
+  .mask-card figure{ margin: 0; position: relative; }
+  .mask-card img{ width: 100%; height: 170px; object-fit: cover; background: var(--kraft); }
+  .mask-card figcaption{
+    position: absolute; bottom: 0; left: 0; right: 0;
+    font-size: 0.72rem; font-family:'Space Grotesk'; letter-spacing: 0.02em;
+    background: rgba(29,43,42,0.72); color: var(--paper-white);
+    padding: 0.25rem 0.5rem;
+  }
+  .mask-meta{ padding: 1rem 1.1rem 1.1rem; }
+  .mask-meta .style-label{ font-family:'Space Grotesk'; font-weight:600; font-size:0.98rem; display:block; margin-bottom:0.6rem; }
+  .dl-row{ display:flex; gap: 1rem; }
+  .dl-row a{ font-size: 0.85rem; text-decoration: none; border-bottom: 1px dashed var(--accent); }
+  .dl-row a:hover{ color: var(--ink); border-color: var(--ink); }
+
+  /* ---------- Resources ---------- */
+  .resource-grid{ display:grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 1.5rem; align-items: stretch; }
+  .resource-card{
+    background: var(--paper-white); border-radius: var(--radius); padding: 1.75rem;
+    display:flex; flex-direction:column; gap: 0.85rem;
+  }
+  .resource-card.primary{ border: 2px dashed var(--pine); }
+  .resource-card:not(.primary){ border: 1px solid var(--kraft-dark); }
+  .resource-card h3{ margin-bottom: 0; }
+  .resource-card p{ font-size: 0.95rem; color: var(--ink-soft); flex-grow: 1; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    font-weight: 600; font-size: 0.92rem; text-decoration: none;
+    padding: 0.7rem 1.25rem; border-radius: var(--radius);
+    border: 1px solid transparent; width: fit-content;
+    transition: background-color .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .btn-solid{ background: var(--pine); color: var(--paper-white); }
+  .btn-solid:hover{ background: var(--pine-dark, #24403A); }
+  .btn-outline{ border-color: var(--ink); color: var(--ink); }
+  .btn-outline:hover{ background: var(--ink); color: var(--paper-white); }
+
+  /* ---------- Logistics / footer ---------- */
+  .logistics .two-col{ align-items: center; }
+  .logistics h2{ margin-bottom: 0.75rem; }
+  .contact-block p{ margin-bottom: 0.5rem; font-size: 0.98rem; }
+  .contact-block .tbd{ color: rgba(251,247,238,0.85); border-bottom-color: rgba(251,247,238,0.4); }
+  .logistics .info-card{ background: rgba(251,247,238,0.06); border-color: rgba(251,247,238,0.25); }
+  .logistics .info-card h3{ color: var(--blueprint-light); }
+  .logistics .info-card p{ color: rgba(251,247,238,0.82); }
+
+  footer{
+    background: var(--ink); color: rgba(251,247,238,0.65);
+    padding: 2.5rem 0; font-size: 0.85rem;
+  }
+  footer .wrap{ display:flex; justify-content: space-between; align-items:center; gap: 1rem; flex-wrap: wrap; }
+  footer a{ color: rgba(251,247,238,0.85); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 880px){
+    .hero .wrap{ grid-template-columns: 1fr; }
+    .hero-art{ order: -1; max-width: 340px; margin: 0 auto; }
+    .two-col{ grid-template-columns: 1fr; }
+    .fact-grid{ grid-template-columns: 1fr 1fr; }
+    .resource-grid{ grid-template-columns: 1fr; }
+    .gallery-grid{ grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px){
+    .nav-links{
+      position: absolute; top: var(--nav-h); left: 0; right: 0;
+      background: var(--ink); flex-direction: column; align-items: flex-start;
+      padding: 0.5rem clamp(1.25rem, 4vw, 2.5rem) 1.25rem;
+      display: none;
+      border-bottom: 1px solid rgba(251,247,238,0.12);
+    }
+    .nav-links.open{ display: flex; }
+    .nav-toggle{ display: block; }
+    .fact-grid{ grid-template-columns: 1fr; }
+    .gallery-grid{ grid-template-columns: 1fr; }
+    .mask-card img{ height: 200px; }
+    .tbd-list{ grid-template-columns: 1fr; }
+    .facts-row div{ border-right: none; border-bottom: 1px dashed var(--kraft-dark); margin-right:0; width:100%; padding: 0.7rem 0; }
+    footer .wrap{ flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Polygons to Papercraft</a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation">&#9776;</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#day-one">Day One</a></li>
+      <li><a href="#day-two">Day Two</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#details">Details</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <h1>Polygons to Papercraft</h1>
+        <p class="lede">A two-day library program where you design a custom wearable mask in Blender, then build it for real — cut, scored, folded, and glued out of cardstock.</p>
+        <p>No 3D experience required. Just curiosity, a mouse and keyboard, and (on day two) a willingness to get a little glue on your fingers.</p>
+        <div class="facts-row">
+          <div><strong>Two sessions</strong><span>Digital Media Lab, then the Discovery Center Makerspace</span></div>
+          <div><strong>Teens &amp; adults</strong><span>No design experience needed</span></div>
+          <div><strong>You'll leave with</strong><span>A wearable, one-of-a-kind paper mask</span></div>
+        </div>
+      </div>
+
+      <svg class="hero-art" viewBox="0 0 420 520" role="img" aria-label="Illustration of a low-poly mask made of triangular facets, drawn like a paper pattern with dashed fold lines">
+        <polygon points="210,40 330,110 210,260" fill="#35597F"/>
+        <polygon points="330,110 365,260 210,260" fill="#33574C"/>
+        <polygon points="365,260 320,410 210,260" fill="#5478A0"/>
+        <polygon points="320,410 210,480 210,260" fill="#4E7A6C"/>
+        <polygon points="210,480 100,410 210,260" fill="#B89968"/>
+        <polygon points="100,410 55,260 210,260" fill="#35597F"/>
+        <polygon points="55,260 90,110 210,260" fill="#33574C"/>
+        <polygon points="90,110 210,40 210,260" fill="#5478A0"/>
+
+        <polygon points="210,40 330,110 365,260 320,410 210,480 100,410 55,260 90,110"
+                 fill="none" stroke="#1D2B2A" stroke-width="3" stroke-linejoin="round"/>
+
+        <g stroke="#FBF7EE" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="4 5">
+          <line x1="210" y1="260" x2="210" y2="40"/>
+          <line x1="210" y1="260" x2="330" y2="110"/>
+          <line x1="210" y1="260" x2="365" y2="260"/>
+          <line x1="210" y1="260" x2="320" y2="410"/>
+          <line x1="210" y1="260" x2="210" y2="480"/>
+          <line x1="210" y1="260" x2="100" y2="410"/>
+          <line x1="210" y1="260" x2="55" y2="260"/>
+          <line x1="210" y1="260" x2="90" y2="110"/>
+        </g>
+
+        <polygon points="160,188 182,210 160,236 138,210" fill="#FBF7EE" stroke="#1D2B2A" stroke-width="2"/>
+        <polygon points="260,188 282,210 260,236 238,210" fill="#FBF7EE" stroke="#1D2B2A" stroke-width="2"/>
+
+        <polygon points="330,110 365,150 350,175" fill="#B89968" stroke="#1D2B2A" stroke-width="2"/>
+        <polygon points="90,110 55,150 70,175" fill="#B89968" stroke="#1D2B2A" stroke-width="2"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ===== OVERVIEW ===== -->
+  <section class="band" id="overview">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="marker" aria-hidden="true"></span>
+        <div>
+          <h2>From screen to cardstock, in two sessions</h2>
+        </div>
+      </div>
+      <p>In this two-day program, participants learn the fundamentals of 3D modeling in Blender — a free, professional-grade tool used by hobbyists, indie game developers, and animation studios alike — to design a custom wearable mask. Day one puts you behind the keyboard in the Digital Media Lab, sculpting your design in three dimensions. Day two moves to the Discovery Center Makerspace, where that digital design becomes a physical mask you cut, fold, and decorate by hand.</p>
+
+      <div class="fact-grid">
+        <div>
+          <span class="marker" aria-hidden="true"></span>
+          <h3>Two sessions, one project</h3>
+          <p>Attend both days to take your mask from a shape on screen to a wearable object in your hands.</p>
+        </div>
+        <div>
+          <span class="marker" aria-hidden="true"></span>
+          <h3>Nothing to know beforehand</h3>
+          <p>No experience with Blender, 3D modeling, or design software required — just reasonable comfort with a mouse and keyboard.</p>
+        </div>
+        <div>
+          <span class="marker" aria-hidden="true"></span>
+          <h3>A design that's yours</h3>
+          <p>Sleek and futuristic, folkloric and ornate, or downright silly — the design direction is entirely up to you.</p>
+        </div>
+      </div>
+
+      <div class="tbd-card">
+        <h3>Program details</h3>
+        <dl class="tbd-list">
+          <div><dt>Dates</dt><dd class="tbd">Add day one &amp; day two dates</dd></div>
+          <div><dt>Times</dt><dd class="tbd">Add start &amp; end times</dd></div>
+          <div><dt>Where</dt><dd>Digital Media Lab (day one) &amp; Discovery Center Makerspace (day two)</dd></div>
+          <div><dt>Who</dt><dd>Teens &amp; adults</dd></div>
+          <div><dt>Cost</dt><dd class="tbd">Add cost or "free"</dd></div>
+          <div><dt>Registration</dt><dd class="tbd">Add registration link</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DAY ONE ===== -->
+  <section class="band day-one" id="day-one" style="--accent: var(--blueprint);">
+    <div class="wrap two-col">
+      <div>
+        <div class="section-head">
+          <span class="marker" aria-hidden="true"></span>
+          <div>
+            <span class="kicker">Digital Media Lab</span>
+            <h2>Day One — Design your mask on screen</h2>
+          </div>
+        </div>
+        <p>We'll spend the day in the Digital Media Lab working in Blender, a freely available, professional-grade 3D editing suite used by hobbyists, indie game designers, and Oscar-winning animation studios.</p>
+        <p>We start with the fundamentals: navigating 3D space, building up simple forms, and getting comfortable with the tools Blender gives you for pushing, pulling, and sculpting polygons. After working through an example of each tool together, you'll design a mask that's uniquely you. This isn't about getting it "right" — it's creative expression, explored on screen.</p>
+        <p>By the end of the day, we'll export your model as a flattened paper pattern — panels of triangles ready to print, much like the patterns used to cut fabric for clothing.</p>
+      </div>
+      <div>
+        <div class="info-card">
+          <h3>Who it's for</h3>
+          <p>Teens and adults curious about 3D design, gaming, animation, cosplay, or fashion — or anyone looking to try something new.</p>
+        </div>
+        <div class="info-card">
+          <h3>What to bring</h3>
+          <p>Nothing required, though an optional USB drive is handy for saving your file. Bring a camera phone if you'd like to use your own reference images, and bring reference material if you're recreating a specific character or design.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DAY TWO ===== -->
+  <section class="band band-kraft day-two" id="day-two" style="--accent: var(--pine);">
+    <div class="wrap two-col">
+      <div>
+        <div class="section-head">
+          <span class="marker" aria-hidden="true"></span>
+          <div>
+            <span class="kicker">Discovery Center Makerspace</span>
+            <h2>Day Two — Build it with your hands</h2>
+          </div>
+        </div>
+        <p>This session takes the pattern you designed and turns it back into a 3D form — for real this time. Your printed pattern of triangles might not look like much at first, but with some careful cutting, scoring, folding, and gluing, it springs back into the very mask you designed on screen.</p>
+        <p>We'll provide lightweight cardboard, cutting tools, adhesives, and plenty of guidance as you work through each panel. It's part puzzle, part origami — hands-on, satisfying, and a great way to see how a digital design connects to the physical world.</p>
+        <p>Once your mask has taken shape, you'll move on to decoration using art materials available in the makerspace, finishing a piece that's uniquely yours: eerie and elegant, wild and colorful, or sleek and futuristic. You'll leave with a wearable, one-of-a-kind mask — and a new set of skills in 3D modeling, digital fabrication, and hands-on making.</p>
+      </div>
+      <div>
+        <div class="info-card">
+          <h3>Who it's for</h3>
+          <p>Teens and adults who attended Day One. Walk-ins may be accommodated the day of, with Halloween-themed mask patterns available for anyone joining without a Day One design.</p>
+        </div>
+        <div class="info-card">
+          <h3>What to bring</h3>
+          <p>Nothing required. If you have a specific look in mind, feel free to bring your own specialty decorating materials.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="band" id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="marker" aria-hidden="true"></span>
+        <div><h2>Reference gallery</h2></div>
+      </div>
+      <p class="gallery-intro">Not sure where to start? These six masks show what's possible with a handful of Blender's basic tools. Each one is shown from the front and in profile, so you can see how the panels wrap around the form — click through to download and print a set for reference.</p>
+
+      <div class="gallery-grid">
+
+        <article class="mask-card">
+          <div class="pair">
+            <figure><img src="images/mask-01-front.jpg" alt="Folkloric & Ornate mask, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="images/mask-01-profile.jpg" alt="Folkloric & Ornate mask, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+          </div>
+          <div class="mask-meta">
+            <span class="style-label">Folkloric &amp; Ornate</span>
+            <div class="dl-row">
+              <a href="images/mask-01-front.jpg" download>Download front</a>
+              <a href="images/mask-01-profile.jpg" download>Download profile</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="mask-card">
+          <div class="pair">
+            <figure><img src="images/mask-02-front.jpg" alt="Sleek & Futuristic mask, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="images/mask-02-profile.jpg" alt="Sleek & Futuristic mask, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+          </div>
+          <div class="mask-meta">
+            <span class="style-label">Sleek &amp; Futuristic</span>
+            <div class="dl-row">
+              <a href="images/mask-02-front.jpg" download>Download front</a>
+              <a href="images/mask-02-profile.jpg" download>Download profile</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="mask-card">
+          <div class="pair">
+            <figure><img src="images/mask-03-front.jpg" alt="Downright Silly mask, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="images/mask-03-profile.jpg" alt="Downright Silly mask, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+          </div>
+          <div class="mask-meta">
+            <span class="style-label">Downright Silly</span>
+            <div class="dl-row">
+              <a href="images/mask-03-front.jpg" download>Download front</a>
+              <a href="images/mask-03-profile.jpg" download>Download profile</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="mask-card">
+          <div class="pair">
+            <figure><img src="images/mask-04-front.jpg" alt="Eerie & Elegant mask, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="images/mask-04-profile.jpg" alt="Eerie & Elegant mask, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+          </div>
+          <div class="mask-meta">
+            <span class="style-label">Eerie &amp; Elegant</span>
+            <div class="dl-row">
+              <a href="images/mask-04-front.jpg" download>Download front</a>
+              <a href="images/mask-04-profile.jpg" download>Download profile</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="mask-card">
+          <div class="pair">
+            <figure><img src="images/mask-05-front.jpg" alt="Wild & Colorful mask, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="images/mask-05-profile.jpg" alt="Wild & Colorful mask, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+          </div>
+          <div class="mask-meta">
+            <span class="style-label">Wild &amp; Colorful</span>
+            <div class="dl-row">
+              <a href="images/mask-05-front.jpg" download>Download front</a>
+              <a href="images/mask-05-profile.jpg" download>Download profile</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="mask-card">
+          <div class="pair">
+            <figure><img src="images/mask-06-front.jpg" alt="Halloween Special mask, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="images/mask-06-profile.jpg" alt="Halloween Special mask, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+          </div>
+          <div class="mask-meta">
+            <span class="style-label">Halloween Special</span>
+            <div class="dl-row">
+              <a href="images/mask-06-front.jpg" download>Download front</a>
+              <a href="images/mask-06-profile.jpg" download>Download profile</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESOURCES ===== -->
+  <section class="band band-kraft" id="resources">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="marker" aria-hidden="true"></span>
+        <div><h2>Take-home resources</h2></div>
+      </div>
+      <p style="max-width:46rem; margin-bottom:2.5rem;">Everything here is optional, but handy if you want to practice between sessions or set up Blender at home before day one.</p>
+
+      <div class="resource-grid">
+        <div class="resource-card primary">
+          <h3>Blender &amp; Export Paper Model cheat sheet</h3>
+          <p>Keyboard shortcuts, the modeling workflow we'll use in session one, and step-by-step notes for exporting your mask with the Export Paper Model add-on.</p>
+          <a class="btn btn-solid" href="resources/blender-papercraft-cheatsheet.pdf" download>Download PDF</a>
+        </div>
+
+        <div class="resource-card">
+          <h3>Get Blender</h3>
+          <p>Blender is free and open source. Installing it at home is optional, but useful if you'd like to keep practicing between sessions.</p>
+          <a class="btn btn-outline" href="https://www.blender.org/download/" target="_blank" rel="noopener">blender.org/download</a>
+        </div>
+
+        <div class="resource-card">
+          <h3>Export Paper Model add-on</h3>
+          <p>The add-on ships with Blender — enable it under Edit &gt; Preferences &gt; Add-ons. The manual covers unfolding, seams, and exporting your net as a PDF or SVG.</p>
+          <a class="btn btn-outline" href="https://docs.blender.org/manual/en/latest/addons/import_export/paper_model.html" target="_blank" rel="noopener">Read the manual</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LOGISTICS / FOOTER DETAILS ===== -->
+  <section class="band band-ink logistics" id="details">
+    <div class="wrap two-col">
+      <div class="contact-block">
+        <div class="section-head">
+          <span class="marker" aria-hidden="true" style="--accent: var(--blueprint-light);"></span>
+          <div><h2>Questions before you sign up?</h2></div>
+        </div>
+        <p>Space is limited, and day two builds directly on the design you start on day one — so please plan to attend both sessions if you can.</p>
+        <p>Contact: <span class="tbd">[Add staff name, email, or phone]</span></p>
+        <p>Registration: <span class="tbd">[Add registration link]</span></p>
+      </div>
+      <div class="info-card">
+        <h3>Good to know</h3>
+        <p>Materials for construction and decoration are provided on day two. Day two openings may be available same-day, with Halloween-themed patterns on hand for walk-ins.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>[Your Library Name] · Digital Media Lab &amp; Discovery Center Makerspace</span>
+    <a href="#top">Back to top</a>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', function(){
+    var open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll-margin so anchored sections clear the sticky nav
+  document.querySelectorAll('main section[id]').forEach(function(sec){
+    sec.style.scrollMarginTop = 'calc(var(--nav-h, 72px) + 8px)';
+  });
+
+  // Scrollspy: highlight the nav link for the section in view
+  var sections = document.querySelectorAll('main section[id]');
+  var navMap = {};
+  navLinks.querySelectorAll('a').forEach(function(a){
+    navMap[a.getAttribute('href').slice(1)] = a;
+  });
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var link = navMap[entry.target.id];
+      if(!link) return;
+      if(entry.isIntersecting){
+        Object.values(navMap).forEach(function(l){ l.classList.remove('active'); });
+        link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+  sections.forEach(function(sec){ observer.observe(sec); });
+
+  // Image fallback — shows a designed placeholder instead of a broken-image icon
+  var PLACEHOLDER_IMG = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23E4D6B4'/%3E%3Crect x='9' y='9' width='382' height='282' fill='none' stroke='%2333574C' stroke-width='2' stroke-dasharray='7 6'/%3E%3Cpolygon points='200,118 224,160 176,160' fill='%2335597F' opacity='0.55'/%3E%3Ctext x='200' y='205' font-family='sans-serif' font-size='15' fill='%231D2B2A' text-anchor='middle'%3EImage coming soon%3C/text%3E%3C/svg%3E";
+  function fallbackImg(img){
+    img.onerror = null;
+    img.src = PLACEHOLDER_IMG;
+    img.style.objectFit = 'contain';
+    img.style.background = '#E4D6B4';
+  }
+</script>
+
+</body>
+</html>
