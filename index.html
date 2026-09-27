@@ -71,7 +71,7 @@
   h2{ font-size: clamp(1.85rem, 3.6vw, 2.6rem); line-height: 1.12; }
   h3{ font-size: 1.2rem; }
 
-  p{ margin: 0 0 1.1em; max-width: 62ch; }
+  p{ margin: 0 0 1.1em; }
   p:last-child{ margin-bottom: 0; }
   a{ color: var(--accent); }
   a:not(.btn):not(.brand){ text-decoration-thickness: 1px; text-underline-offset: 3px; }
@@ -156,7 +156,7 @@
   .band-ink p{ color: rgba(251,247,238,0.82); }
   .band-ink h2{ color: var(--paper-white); }
 
-  .section-head{ display:flex; align-items:flex-start; gap: 0.9rem; margin-bottom: 1.75rem; max-width: 46rem; }
+  .section-head{ display:flex; align-items:flex-start; gap: 0.9rem; margin-bottom: 1.75rem;}
   .marker{
     flex: none; width: 15px; height: 13px; margin-top: 0.55em;
     background: var(--accent);
@@ -211,7 +211,7 @@
   .details{ font-style: italic; color: var(--ink-soft); border-bottom: 1px dashed var(--kraft-dark); padding-bottom: 1px; }
 
   /* ---------- Gallery ---------- */
-  .gallery-intro{ max-width: 46rem; margin-bottom: 2.5rem; }
+  .gallery-intro{ margin-bottom: 2.5rem; }
   .gallery-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.75rem; }
   .mask-card{
     background: var(--paper-white); border: 1px solid var(--kraft-dark); border-radius: var(--radius);
@@ -329,7 +329,7 @@
       <div class="hero-copy">
         <h1>Polygons to Papercraft</h1>
         <p class="lede">A two-day library program where you design a custom wearable mask in Blender, then build it for real — cut, scored, folded, and glued out of cardstock.</p>
-        <p>No 3D experience required. Just comfort with basic computer mouse and keyboard use, and (on day two) a willingness to get a little glue on your fingers.</p>
+        <p>No 3D experience required. Just comfort with basic computer mouse and keyboard use, and on day two, a willingness to get a little glue on your fingers.</p>
         <div class="facts-row">
           <div><strong>Two sessions</strong><span>Digital Media Lab, then the Discovery Center Makerspace</span></div>
           <div><strong>Teens &amp; adults</strong><span>No design experience needed</span></div>
@@ -408,14 +408,18 @@
       <div>
         <div class="info-card">
           <h3>What to bring</h3>
-          <p>Nothing required, though an optional USB drive is handy for saving your file. Bring a camera phone if you'd like to use your own face for reference, and bring reference images if you're recreating a specific character or design.</p>
+          <p>
+            Each student will need a USB drive to save the files, but thumbdrives are available for loan during the class if you do not bring your own.
+            Bring a camera phone if you'd like to use your own face for reference.
+            You might also want reference images if you're recreating a specific character or design.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===== DAY TWO ===== -->
-  <section class="band band-kraft day-two" id="day-two" style="--accent: var(--pine);">
+  <section class="band band day-two" id="day-two" style="--accent: var(--pine);">
     <div class="wrap two-col">
       <div>
         <div class="section-head">
@@ -545,84 +549,87 @@
         <span class="marker" aria-hidden="true"></span>
         <div><h2>Reference Heads</h2></div>
       </div>
-      <p class="refheads-intro" style="max-width: none;">
+      <p class="refheads-intro">
         To ensure the final masks are wearable, we need to ensure we have a good sense of scale when working on the computer.
         These examples heads are provided in both front and side views, and include a ruler marked off in 1 inch increments.
-        Download a pair of images from here to import into Blender, or create your own.
+        Select an example and download the pair of images in the zip file, or create your own.
+        The files will be imported into Blender as reference images to help you scale and shape your mask.
+        <!--
         Using tape or other highly visible markers on a ruler, take pictures from each angle.
         Then upload the resulting files to your online cloud account (Dropbox, Google Drive, Google Photos, iCloud, Microsoft OneDrive, etc).
+        -->
       </p>
 
       <div class="gallery-grid">
 
         <article class="mask-card">
           <div class="pair">
-            <figure><img src="refheads/refhead01-front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
-            <figure><img src="refheads/refhead01-profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+            <figure><img src="refheads/refhead07_front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="refheads/refhead07_profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
           </div>
           <div class="mask-meta">
             <div class="dl-row">
-              <a href="refheads/refhead01.zip" download>Download images (.zip)</a>
+              <a href="refheads/refhead07.zip" download>Download images (.zip)</a>
             </div>
           </div>
         </article>
 
         <article class="mask-card">
           <div class="pair">
-            <figure><img src="refheads/refhead02-front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
-            <figure><img src="refheads/refhead02-profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+            <figure><img src="refheads/refhead08_front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="refheads/refhead08_profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
           </div>
           <div class="mask-meta">
             <div class="dl-row">
-              <a href="refheads/refhead02.zip" download>Download images (.zip)</a>
+              <a href="refheads/refhead08.zip" download>Download images (.zip)</a>
             </div>
           </div>
         </article>
 
         <article class="mask-card">
           <div class="pair">
-            <figure><img src="refheads/refhead03-front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
-            <figure><img src="refheads/refhead03-profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+            <figure><img src="refheads/refhead09_front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="refheads/refhead09_profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
           </div>
           <div class="mask-meta">
             <div class="dl-row">
-              <a href="refheads/refhead03.zip" download>Download images (.zip)</a>
+              <a href="refheads/refhead09.zip" download>Download images (.zip)</a>
             </div>
           </div>
         </article>
 
         <article class="mask-card">
           <div class="pair">
-            <figure><img src="refheads/refhead04-front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
-            <figure><img src="refheads/refhead04-profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+            <figure><img src="refheads/refhead10_front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="refheads/refhead10_profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
           </div>
           <div class="mask-meta">
             <div class="dl-row">
-              <a href="refheads/refhead04.zip" download>Download images (.zip)</a>
+              <a href="refheads/refhead10.zip" download>Download images (.zip)</a>
             </div>
           </div>
         </article>
 
         <article class="mask-card">
           <div class="pair">
-            <figure><img src="refheads/refhead05-front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
-            <figure><img src="refheads/refhead05-profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+            <figure><img src="refheads/refhead11_front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="refheads/refhead11_profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
           </div>
           <div class="mask-meta">
             <div class="dl-row">
-              <a href="refheads/refhead05.zip" download>Download images (.zip)</a>
+              <a href="refheads/refhead11.zip" download>Download images (.zip)</a>
             </div>
           </div>
         </article>
 
         <article class="mask-card">
           <div class="pair">
-            <figure><img src="refheads/refhead06-front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
-            <figure><img src="refheads/refhead06-profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
+            <figure><img src="refheads/refhead12_front.jpg" alt="Reference head, front view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Front</figcaption></figure>
+            <figure><img src="refheads/refhead12_profile.jpg" alt="Reference head, profile view" loading="lazy" onerror="fallbackImg(this)"><figcaption>Profile</figcaption></figure>
           </div>
           <div class="mask-meta">
             <div class="dl-row">
-              <a href="refheads/refhead06.zip" download>Download images (.zip)</a>
+              <a href="refheads/refhead12.zip" download>Download images (.zip)</a>
             </div>
           </div>
         </article>
@@ -633,13 +640,13 @@
   </section>
 
   <!-- ===== RESOURCES ===== -->
-  <section class="band band-kraft" id="resources">
+  <section class="band band" id="resources">
     <div class="wrap">
       <div class="section-head">
         <span class="marker" aria-hidden="true"></span>
         <div><h2>Take-home resources</h2></div>
       </div>
-      <p style="max-width:46rem; margin-bottom:2.5rem;">Everything here is optional, but handy if you want to practice between sessions or set up Blender at home before day one.</p>
+      <p style="margin-bottom:2.5rem;">Everything here is optional, but handy if you want to practice between sessions or set up Blender at home before day one.</p>
 
       <div class="resource-grid">
         <div class="resource-card">
@@ -661,7 +668,11 @@
             This add-on is one of many available from the <a href="https://extensions.blender.org/">Blender Extensions website</a>.
             It has already been installed on Library computers, but you will need to install it separately if you want to use it elsewhere.
             From the extension page, select the "Get Add-on" button to downloads the extenstion's .zip file.
-            Install it via the "Add-ons" tabs of the Edit &gt; Preferences dialog, look for the "Add from file" option.</p>
+            Install it via the "Add-ons" tabs of the Edit &gt; Preferences dialog, look for the "Add from file" option.
+          </p>
+          <p>
+            Export Paper Model <a href="https://docs.blender.org/manual/en/4.1//addons/import_export/paper_model.html">documentation</a>.
+          </p>
           <a class="btn btn-solid" href="https://extensions.blender.org/add-ons/export-paper-model/" target="_blank" rel="noopener">Export Paper Model</a>
         </div>
       </div>
