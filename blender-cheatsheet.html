@@ -1,0 +1,547 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blender — Shortcut Cheat Sheet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+
+    :root {
+      --ink: #1D2B2A;
+      --ink-soft: #4B5957;
+      --paper: #F1E9D8;
+      --paper-white: #FBF7EE;
+      --kraft: #E4D6B4;
+      --kraft-dark: #B89968;
+      --pine: #33574C;
+      --pine-light: #4E7A6C;
+      --blueprint: #35597F;
+      --blueprint-light: #5478A0;
+      --accent: var(--blueprint);
+      --line: rgba(29,43,42,.18);
+      --shadow: 0 2px 0 rgba(29,43,42,.09);
+    }
+
+    * { box-sizing: border-box; }
+    html { background: #d9d0bf; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #d9d0bf;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 10px;
+      line-height: 1.28;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }    
+
+    .sheet {
+      width: 10.5in;
+      min-height: 7.8in;
+      margin: 0.35in auto;
+      padding: .1in .1in .1in;
+      display: flex;
+      flex-direction: column;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(255,255,255,.23) 0 1px, transparent 1.4px),
+        radial-gradient(circle at 80% 72%, rgba(84,120,160,.09) 0 1px, transparent 1.5px),
+        var(--paper);
+      background-size: 17px 17px, 23px 23px, auto;
+      box-shadow: 0 10px 35px rgba(29,43,42,.24);
+    }
+
+    .masthead {
+      position: relative;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 8px 18px 12px;
+      color: var(--paper-white);
+      background: var(--pine);
+      border-radius: 9px 9px 3px 3px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .masthead::after {
+      content: "X   Y   Z";
+      position: absolute;
+      right: 17px;
+      top: 10px;
+      color: rgba(251,247,238,.18);
+      font: 800 10px/1 ui-monospace, monospace;
+      letter-spacing: 5px;
+      transform: rotate(-12deg);
+    }
+
+    .eyebrow {
+      margin: 0 0 3px;
+      color: #c9ddcf;
+      font: 800 9px/1.1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { margin: 0; }
+    h1,h2,h3,footer,.eyebrow-font,nav{
+      font-family: 'Space Grotesk', -apple-system, 'Segoe UI', sans-serif;
+    }
+
+    .title-row {display: flex; align-items: center; gap: 20px;}
+    h1 {
+      font-size: 27px;
+      letter-spacing: -.03em;
+    }
+    h1 img.icon {
+      width: 46px;
+      height: 46px;
+      margin: 0 12px -16px -12px;
+    }
+    .dek {
+      max-width: 330px;
+      margin-top: 5px;
+      color: rgba(251,247,238,.82);
+      font-size: 11px;
+    }
+    .masthead-note {
+      position: relative;
+      z-index: 1;
+      width: 220px;
+      padding: 10px 12px;
+      color: var(--ink);
+      background: var(--paper-white);
+      border-left: 4px solid var(--blueprint);
+      border-radius: 4px;
+      font-size: 10px;
+    }
+    .masthead-note strong { display: block; margin-bottom: 3px; color: var(--blueprint); font-size: 11px; }
+
+    .quickbar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 10px 0 11px;
+    }
+    .quick {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 6px 9px;
+      background: var(--paper-white);
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      box-shadow: 0 1px 0 rgba(255,255,255,.65) inset;
+    }
+    .quick span:last-child { color: var(--ink-soft); font-size: 9.5px; }
+    .quick strong { display: block; color: var(--ink); font-size: 10px; }
+
+    .key {
+      display: inline-grid;
+      place-items: center;
+      min-width: 23px;
+      height: 21px;
+      padding: 0 5px;
+      color: var(--paper-white) !important;
+      background: var(--blueprint) !important;
+      border-radius: 4px;
+      box-shadow: 0 2px 0 #213c59;
+      font: 800 10px/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+      white-space: nowrap;
+    }
+  
+    .key.pine { background: var(--pine); box-shadow: 0 2px 0 #203a32; }
+    .key.light { color: var(--ink); background: var(--kraft); box-shadow: 0 2px 0 var(--kraft-dark); }
+    .keys { display: inline-flex; gap: 3px; align-items: center; flex-wrap: wrap; }
+    .plus { color: var(--ink-soft); font-weight: 800; }
+
+    .columns {
+      margin-top: 0.05in;
+      display: grid;
+      grid-template-columns: 1.03fr 1.16fr .9fr;
+      gap: 11px;
+      align-items: start;
+      flex: 1;
+    }
+    .column { display: grid; gap: 10px; align-content: start; min-width: 0; }
+
+    .card {
+      background: rgba(251,247,238,.86);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .band {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 7px 10px 6px;
+      color: var(--ink);
+      background: var(--kraft);
+      border-bottom: 1px solid rgba(184,153,104,.55);
+    }
+    .band.blue { color: var(--paper-white); background: var(--blueprint); border-bottom-color: transparent; }
+    .band.pine { color: var(--paper-white); background: var(--pine); border-bottom-color: transparent; }
+    h2 {
+      font-size: 14px;
+      letter-spacing: -.01em;
+    }
+    .band small {
+      color: var(--ink-soft);
+      font: 800 8px/1 ui-monospace, monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .band.blue small, .band.pine small { color: rgba(251,247,238,.72); }
+    .card-body { padding: 9px 10px 10px; }
+
+    .card-body ol.sequence {padding-left: 1.5em;}
+
+    .micro {
+      color: var(--ink-soft);
+      font-size: 9px;
+    }
+    .label {
+      color: var(--blueprint);
+      font: 800 8px/1.1 ui-monospace, monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .rule { height: 1px; margin: 8px 0; background: var(--line); }
+
+    .view-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 13px;
+    }
+    .numpad-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center; }
+    .numpad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+      max-width: 178px;
+      padding: 6px;
+      background: rgba(53,89,127,.08);
+      border: 1px solid rgba(53,89,127,.22);
+      border-radius: 5px;
+    }
+    .numkey {
+      display: grid;
+      place-items: center;
+      min-height: 33px;
+      padding: 3px 2px;
+      color: var(--ink);
+      background: var(--paper-white);
+      border: 1px solid rgba(29,43,42,.18);
+      border-radius: 3px;
+      text-align: center;
+    }
+    .numkey .key { min-width: 21px; height: 18px; font-size: 8px; box-shadow: 0 1px 0 #213c59; }
+    .numkey span:last-child { display: block; margin-top: 3px; color: var(--ink-soft); font-size: 7.2px; line-height: 1.05; }
+    .numkey.blank { visibility: hidden; }
+    .numpad-note { color: var(--ink-soft); font-size: 8.7px; }
+    .numpad-note p { margin-top: 1em;}
+    .numpad-note p:first {margin-top: 0;}
+    .numpad-note strong { color: var(--blueprint); }
+    .shortcut-row {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      min-height: 22px;
+      padding: 2px 0;
+      border-bottom: 1px dotted rgba(29,43,42,.16);
+    }
+    .shortcut-row:last-child { border-bottom: 0; }
+    .shortcut-row .desc { color: var(--ink-soft); font-size: 9.2px; }
+
+    .gesture-list, .plain-list, .undo-list {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .gesture-list li { display: grid; grid-template-columns: 44px 1fr; gap: 8px; align-items: start; }
+    .plain-list li { display: grid; grid-template-columns: 80px 1fr; gap: 8px; align-items: start; }
+    .undo-list li { display: grid; grid-template-columns: 120px 1fr; gap: 8px; align-items: start; }
+    .gesture-list b { font-size: 9px; }
+    .gesture-list span, .plain-list span, .undo-list span { color: var(--ink-soft); font-size: 9px; }
+    .plain-list > li > .key, .plain-list > li > .keys .key { color: var(--paper-white); }
+
+    .gizmo-row {
+      display: grid;
+      grid-template-columns: 66px 1fr;
+      gap: 9px;
+      align-items: center;
+      margin-bottom: 8px;
+      padding-bottom: 8px;
+      border-bottom: 1px dotted rgba(29,43,42,.18);
+    }
+    .gizmo-row img { display: block; width: 60px; height: 80px; object-fit: cover; object-position: top right; border: 1px solid rgba(29,43,42,.22); border-radius: 4px; }
+    .gizmo-row img.wide { object-fit: contain; background: #3b3b3b; }
+    .gizmo-copy { color: var(--ink-soft); font-size: 8.7px; }
+    .gizmo-copy strong { display: block; margin-bottom: 3px; color: var(--ink); font-size: 9.4px; }
+    .gizmo-copy b { color: var(--blueprint); }
+    .gizmo-tools { display: grid; gap: 3px; margin: 0; padding: 0; list-style: none; }
+    .gizmo-tools li { color: var(--ink-soft); font-size: 8.7px; }
+    .gizmo-tools b { color: var(--blueprint); }
+
+    .transform-stack { display: grid; gap: 7px; }
+    .transform {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 8px;
+      padding: 7px 8px;
+      background: rgba(228,214,180,.42);
+      border: 1px solid rgba(184,153,104,.4);
+      border-radius: 5px;
+    }
+    .transform h3 { margin: 0 0 3px; font: 850 12px/1 Georgia, serif; }
+    .transform p { color: var(--ink-soft); font-size: 9px; }
+    .letter {
+      display: grid;
+      place-items: center;
+      width: 31px;
+      height: 31px;
+      color: var(--paper-white);
+      background: var(--pine);
+      border-radius: 50%;
+      font: 900 15px/1 ui-monospace, monospace;
+    }
+    .transform .key { min-width: 21px; height: 18px; font-size: 8px; }
+
+    .sequence {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-top: 7px;
+    }
+    .sequence .arrow { color: var(--kraft-dark); font-weight: 900; }
+    .axis-note {
+      margin-top: 8px;
+      padding: 7px 8px;
+      color: var(--ink-soft);
+      background: rgba(53,89,127,.08);
+      border-left: 3px solid var(--blueprint);
+      font-size: 9px;
+    }
+    .axis-note strong { color: var(--blueprint); }
+
+    .selection-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 5px; }
+    .selection {
+      padding: 8px 4px 7px;
+      text-align: center;
+      background: rgba(78,122,108,.11);
+      border: 1px solid rgba(78,122,108,.24);
+      border-radius: 5px;
+    }
+    .selection .key { margin-bottom: 5px; }
+    .selection p { color: var(--ink-soft); font-size: 8.6px; }
+
+    .beginner {
+      padding: 8px 10px;
+      color: var(--ink-soft);
+      background: #e9dfc7;
+      border: 1px solid rgba(184,153,104,.55);
+      border-radius: 5px;
+      font-size: 9px;
+    }
+    .beginner strong { color: var(--ink); }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 10px;
+      padding: 4px 12px 0;
+      color: rgba(251,247,238,.82);
+      background: var(--pine);
+      border-radius: 3px 3px 9px 9px;
+      font-size: 8.4px;
+    }
+    .footer strong { color: #d4e5d7; letter-spacing: .06em; text-transform: uppercase; }
+    .footer span:last-child { color: rgba(251,247,238,.62); }
+
+    @media screen and (max-width: 1050px) {
+      html, body { background: var(--paper); }
+      .sheet { width: 100%; min-height: 100vh; margin: 0; box-shadow: none; }
+    }
+    @media screen and (max-width: 760px) {
+      .sheet { padding: 16px; }
+      .masthead { display: block; }
+      .masthead-note { width: auto; margin-top: 13px; }
+      .quickbar, .columns { grid-template-columns: 1fr; }
+    }
+    @media print {
+      @page { size: Letter landscape; margin: .18in; }
+      html, body { width: auto; height: auto; background: var(--paper); }
+      .sheet { width: 100%; height: 100%; min-height: 0; margin: 0; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <header class="masthead">
+      <div class="title-row">
+        <h1><img src="images/blender-icon.png" class="icon" alt="Blender icon" width="46" height="46">Blender keyboard shortcuts and viewport navigation</h1>
+      </div>
+    </header>
+
+    <section class="columns">
+      <div class="column">
+        <article class="card">
+          <div class="band blue"><h2>3D Navigation via Gizmo</h2></div>
+          <div class="card-body">
+            <div class="gizmo-row">
+              <img src="images/gizmo.png" alt="Blender navigation gizmo with axis labels and controls">
+              <div class="gizmo-copy"><strong>Click or drag the gizmo</strong>
+                <ul class="gizmo-tools">
+                  <li><b>Axis label:</b> jump to that orthographic view.</li>
+                  <li><b>Matching empty circle:</b> jump to the opposite view.</li>
+                  <li>Hover near the gizmo to reveal a circle; drag inside it to orbit.</li>
+                </ul></div>
+            </div>
+            <div class="gizmo-row" style="margin-bottom:0;padding-bottom:0;border-bottom:0">
+              <img class="wide" src="images/gizmo-hover.png" alt="Blender navigation gizmo when hovered">
+              <div class="gizmo-copy"><strong>Use the four tool icons</strong>
+                <ul class="gizmo-tools">
+                  <li><b>Magnifying glass:</b> drag up/down to zoom.</li>
+                  <li><b>Hand:</b> drag to pan up, down, left, or right.</li>
+                  <li><b>Camera:</b> toggle camera view.</li>
+                  <li><b>Grid:</b> toggle orthographic / perspective.</li>
+                </ul></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="band blue"><h2>3D Navigation via Number Pad</h2></div>
+          <div class="card-body">
+            <p class="label">Navigating with the keyboard's number pad</p>
+            <div class="numpad-wrap">
+              <div class="numpad" aria-label="Numberpad layout">
+                <div class="numkey"><span class="key">7</span><span>Top</span></div>
+                <div class="numkey"><span class="key">8</span><span>Orbit up</span></div>
+                <div class="numkey"><span class="key">9</span><span>Opposite</span></div>
+                <div class="numkey"><span class="key">4</span><span>Orbit left</span></div>
+                <div class="numkey"><span class="key">5</span><span>Ortho / persp.</span></div>
+                <div class="numkey"><span class="key">6</span><span>Orbit right</span></div>
+                <div class="numkey"><span class="key">1</span><span>Front</span></div>
+                <div class="numkey"><span class="key">2</span><span>Orbit down</span></div>
+                <div class="numkey"><span class="key">3</span><span>Side</span></div>
+                <div class="numkey" style="grid-column: span 2"><span class="key">0</span><span>Camera</span></div>
+                <div class="numkey"><span class="key">.</span><span>Frame selected</span></div>
+              </div>
+              <div class="numpad-note">
+                <p>Numberpad corner keys jump to fixed views or their opposite. The even numbers orbit the view in that cardinal direction.</p>
+                <p><span class="key light">+</span> zooms in.</p>
+                <p><span class="key light">−</span> zooms out.</p>
+                </p>
+              </div>
+            </div>
+            <div class="rule"></div>
+            <p class="label">Navigating with the middle mouse button</p>
+            <ul class="gesture-list" style="margin-top:6px">
+              <li><b>Orbit</b><span>Drag with the <strong>middle mouse button</strong> to rotate the camera around your scene.</span></li>
+              <li><b>Pan</b><span>Hold <span class="key light">Shift</span> and drag with the middle mouse button to slide the view.</span></li>
+            </ul>
+            <div class="beginner" style="margin-top:8px"><strong>Tip:</strong> If you lose your object, select it in the Outliner, click back in the viewport for focus, and press <span class="key light">.</span> on the numberpad to bring it back into view.</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="column">
+        <article class="card">
+          <div class="band blue"><h2>Simple workflow</h2><small>repeat this loop</small></div>
+          <div class="card-body">
+            <ol class="sequence" style="margin-top:0">
+              <li>Select your target (objects in <strong>Layout</strong>; vertex/edge/face when <strong>Modeling</strong>).
+                <br/>Use <span class="key light">Shift</span> to add to existing selection.</li>
+              <!--<span class="arrow">→</span>-->
+              <li>Select action/transform type (<span class="key">G</span>rab/<span class="key">R</span>otate/<span class="key">S</span>cale)</li>
+              <li><strong>Optional:</strong> Constrain <span class="key">X</span>/<span class="key">Y</span>/<span class="key">Z</span> axis</li>
+              <li>Move mouse (no mouse button) for amount and direction (no mouse button), using <span class="key light">Shift</span> for precision or <span class="key light">Ctrl</span> for increments,
+                <br/>or type a numeric value.</li>
+              <li><span class="key light">Enter</span> to commit, or <span class="key light">ESC</span> to cancel & revert</li>
+            </ol>
+            <!--<div class="axis-note"><strong>Precision + safety:</strong> Select an object first. Type a number when you need precision. <span class="key light">Enter</span> commits; <span class="key light">Esc</span> cancels. The same pattern works for <strong>R</strong>otate and <strong>S</strong>cale.</div>-->
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="band blue"><h2>Transform selected</h2><small>making changes</small></div>
+          <div class="card-body">
+            <p>When an object, face, edge, or vertex is selected, use these commands for basic changes.</p>
+            <div class="transform-stack">
+              <div class="transform">
+                <div class="letter">G</div>
+                <div><h3>Grab / move</h3><p>Press <span class="key">G</span> to move. Add <span class="key">X</span>, <span class="key">Y</span>, or <span class="key">Z</span> to stay on one axis.</p><div class="sequence"><span class="keys"><span class="key">G</span><span class="plus">+</span><span class="key">X</span></span><span class="arrow">→</span><span class="micro">move along X</span></div><p style="margin-top:4px"><span class="key light">Shift</span> makes smaller movements.</p></div>
+              </div>
+              <div class="transform">
+                <div class="letter">R</div>
+                <div><h3>Rotate</h3><p>Press <span class="key">R</span> to rotate. Add <span class="key">X</span>, <span class="key">Y</span>, or <span class="key">Z</span> to rotate around that axis.</p><div class="sequence"><span class="keys"><span class="key">R</span><span class="plus">+</span><span class="key">X</span></span><span class="arrow">→</span><span class="micro">rotate around X</span><span class="keys" style="margin-left:7px"><span class="key">R</span><span class="plus">+</span><span class="key">R</span></span><span class="arrow">→</span><span class="micro">free rotate</span></div></div>
+              </div>
+              <div class="transform">
+                <div class="letter">S</div>
+                <div><h3>Scale</h3><p>Press <span class="key">S</span> to make the object larger or smaller. Add <span class="key">X</span>, <span class="key">Y</span>, or <span class="key">Z</span> to stretch on one axis.</p><div class="sequence"><span class="keys"><span class="key">S</span><span class="plus">+</span><span class="key">X</span></span><span class="arrow">→</span><span class="micro">stretch along X</span></div></div>
+              </div>
+            </div>
+            <div class="axis-note"><strong>Finish or undo:</strong> <span class="key light">Enter</span> commits a move, rotation, or scale. <span class="key light">Esc</span> backs out and reverts it.</div>
+          </div>
+        </article>
+      </div>
+
+      <div class="column">
+        <article class="card">
+          <div class="band"><h2>Undo or adjust</h2><small>correcting mistakes</small></div>
+          <div class="card-body">
+            <ul class="undo-list">
+              <li><span><span class="keys"><span class="key">Ctrl</span><span class="plus">+</span><span class="key">Z</span></span></span><span><strong>Undo</strong> — reverse the last action.</span></li>
+              <li><span><span class="keys"><span class="key">Shift</span><span class="plus">+</span><span class="key">Ctrl</span><span class="plus">+</span><span class="key">Z</span></span></span><span><strong>Redo</strong> — restore the action.</span></li>
+              <li><span><span class="key">F9</span></span><span><strong>Adjust last operation</strong> — reopen the last operation's settings.</span></li>
+            </ul>
+          </div>
+        </article>
+
+        <div class="beginner"><strong>Remember:</strong> red = X, green = Y, blue = Z. The colored gizmo labels match these axes.</div>
+
+        <article class="card">
+          <div class="band pine"><h2>Modeling mode</h2><small>top-row numbers</small></div>
+          <div class="card-body">
+            <p class="micro">In <strong>Edit Mode</strong>, the top-row number keys choose what part of a mesh you select:</p>
+            <div class="selection-grid">
+              <div class="selection"><span class="key">1</span><p>Points / vertices</p></div>
+              <div class="selection"><span class="key">2</span><p>Edges</p></div>
+              <div class="selection"><span class="key">3</span><p>Faces</p></div>
+            </div>
+            <div class="axis-note"><strong>Easy to mix up:</strong> numberpad <span class="key light">1</span> is a front view; top-row <span class="key light">1</span> is vertex selection in Edit Mode.</div>
+          </div>
+        </article>
+
+
+        <article class="card">
+          <div class="band"><h2>Viewport controls</h2><small>panels + tools</small></div>
+          <div class="card-body">
+            <ul class="plain-list">
+              <li><span><span class="key">N</span></span><span><strong>Sidebar</strong> on/off — the right-side panel for numerical tweaks to your most recent change.</span></li>
+              <li><span><span class="key">T</span></span><span><strong>Toolbar</strong> on/off — the tool shelf on the left side of the viewport.</span></li>
+              <li><span><span class="keys"><span class="key">Shift</span><span class="plus">+</span><span class="key">A</span></span></span><span><strong>Add an object</strong> — opens the Add menu.</span></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer"><strong>Blender cheatsheet</strong><span>Print this out and keep this beside your keyboard while you practice.</span></footer>
+  </main>
+</body>
+</html>
