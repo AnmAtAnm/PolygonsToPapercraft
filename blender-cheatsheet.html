@@ -24,6 +24,9 @@
       --accent: var(--blueprint);
       --line: rgba(29,43,42,.18);
       --shadow: 0 2px 0 rgba(29,43,42,.09);
+      --xRed: #f93657;
+      --yGreen: #6ea322;
+      --zBlue: #2684dc;
     }
 
     * { box-sizing: border-box; }
@@ -358,7 +361,10 @@
       font-size: 9px;
     }
     .beginner strong { color: var(--ink); }
-    .beginner dl dd { }
+    .beginner dl {
+      margin-block-start: 0.5em;
+      margin-block-end: 0;
+    }
 
     .footer {
       display: flex;
@@ -509,14 +515,23 @@
           <div class="band"><h2>Undo or adjust</h2><small>correcting mistakes</small></div>
           <div class="card-body">
             <ul class="undo-list">
-              <li><span><span class="keys"><span class="key">Ctrl</span><span class="plus">+</span><span class="key">Z</span></span></span><span><strong>Undo</strong> — reverse the last action.</span></li>
-              <li><span><span class="keys"><span class="key">Shift</span><span class="plus">+</span><span class="key">Ctrl</span><span class="plus">+</span><span class="key">Z</span></span></span><span><strong>Redo</strong> — restore the action.</span></li>
-              <li><span><span class="key">F9</span></span><span><strong>Adjust last operation</strong> — reopen the last operation's settings.</span></li>
+              <li><span><span class="keys"><span class="key">Ctrl</span><span class="plus">+</span><span class="key">Z</span></span></span><span><strong>Undo</strong> last action.</span></li>
+              <li><span><span class="keys"><span class="key">Shift</span><span class="plus">+</span><span class="key">Ctrl</span><span class="plus">+</span><span class="key">Z</span></span></span><span><strong>Redo</strong> last undo.</span></li>
+              <li><span><span class="key">F9</span></span><span><strong>Adjust</strong> last operation</span></li>
             </ul>
           </div>
         </article>
 
-        <div class="beginner"><strong>Remember:</strong> red = X, green = Y, blue = Z. The colored gizmo labels match these axes.</div>
+        <article class="card">
+          <div class="band"><h2>Viewport controls</h2><small>panels + tools</small></div>
+          <div class="card-body">
+            <ul class="plain-list">
+              <li><span><span class="key">N</span></span><span><strong>Sidebar</strong> on/off — the right-side panel for details about the selection.</span></li>
+              <li><span><span class="key">T</span></span><span><strong>Toolbar</strong> on/off — the tool shelf on the left side of the viewport.</span></li>
+              <li><span><span class="keys"><span class="key">Shift</span><span class="plus">+</span><span class="key">A</span></span></span><span><strong>Add an object</strong> — opens the Add menu.</span></li>
+            </ul>
+          </div>
+        </article>
 
         <article class="card">
           <div class="band pine"><h2>Modeling mode</h2><small>top-row numbers</small></div>
@@ -531,23 +546,23 @@
           </div>
         </article>
 
-
-        <article class="card">
-          <div class="band"><h2>Viewport controls</h2><small>panels + tools</small></div>
-          <div class="card-body">
-            <ul class="plain-list">
-              <li><span><span class="key">N</span></span><span><strong>Sidebar</strong> on/off — the right-side panel for numerical tweaks to your most recent change.</span></li>
-              <li><span><span class="key">T</span></span><span><strong>Toolbar</strong> on/off — the tool shelf on the left side of the viewport.</span></li>
-              <li><span><span class="keys"><span class="key">Shift</span><span class="plus">+</span><span class="key">A</span></span></span><span><strong>Add an object</strong> — opens the Add menu.</span></li>
-            </ul>
-          </div>
-        </article>
+        <div class="beginner"><strong>Remember:</strong>
+          <strong style="color: var(--xRed);">red = X</strong>,
+          <strong style="color: var(--yGreen);">green = Y</strong>,
+          <strong style="color: var(--zBlue);">blue = Z</strong>.
+          Note these colors on the gizmo axis labels, transform handles, and axis lines in the viewport.
+        </div>
 
         <div class="beginner">
           <strong>Learn More</strong>
           <dl>
             <dt>Blender Manual</dt><dd><a href="https://docs.blender.org/manual/en/5.2/index.html">docs.blender.org/manual/en/5.2/</a></dd>
             <dt>Animated Cheatsheet and Commands</dt><dd><a href="https://hollisbrown.github.io/blendershortcuts/">hollisbrown.github.io/blendershortcuts/</a></dd>
+            <dt>Blender Guru</dt>
+            <dd>
+              <a href="https://www.youtube.com/@blenderguru">youtube.com/@blenderguru</a>
+              <br/>Complete 2026 tutorial: <a href="https://youtu.be/z-Xl9tGqH14">youtu.be/z-Xl9tGqH14</a>
+            </dd>
           </dl>
         </div>
 
