@@ -477,9 +477,9 @@
               <li>Select your target (objects in <strong>Layout</strong>; vertex/edge/face when <strong>Modeling</strong>).
                 <br/>Use <span class="key light">Shift</span> to add to existing selection.</li>
               <!--<span class="arrow">→</span>-->
-              <li>Select action/transform type (<span class="key">G</span>rab/<span class="key">R</span>otate/<span class="key">S</span>cale)</li>
-              <li><strong>Optional:</strong> Constrain <span class="key">X</span>/<span class="key">Y</span>/<span class="key">Z</span> axis</li>
-              <li>Move mouse (no mouse button) for amount and direction (no mouse button), using <span class="key light">Shift</span> for precision or <span class="key light">Ctrl</span> for increments,
+              <li>Start operation: <span class="key">G</span>rab, <span class="key">R</span>otate, or <span class="key">S</span>cale</li>
+              <li><strong>Optional:</strong> Constrain <span class="key">X</span>, <span class="key">Y</span>, or <span class="key">Z</span> axis</li>
+              <li>Move mouse (no mouse button) for amount and direction, using <span class="key light">Shift</span> for precision or <span class="key light">Ctrl</span> for increments,
                 <br/>or type a numeric value.</li>
               <li><span class="key light">Enter</span> to commit, or <span class="key light">ESC</span> to cancel & revert</li>
             </ol>
@@ -488,25 +488,43 @@
         </article>
 
         <article class="card">
-          <div class="band blue"><h2>Transform selected</h2><small>making changes</small></div>
+          <div class="band blue"><h2>Transforming selected object, vertex, edge, or face</h2></div>
           <div class="card-body">
-            <p>When an object, face, edge, or vertex is selected, use these commands for basic changes.</p>
+            <p>Changes to position, orientation, or size are called transforms.</p>
             <div class="transform-stack">
               <div class="transform">
                 <div class="letter">G</div>
-                <div><h3>Grab / move</h3><p>Press <span class="key">G</span> to move. Add <span class="key">X</span>, <span class="key">Y</span>, or <span class="key">Z</span> to stay on one axis.</p><div class="sequence"><span class="keys"><span class="key">G</span><span class="plus">+</span><span class="key">X</span></span><span class="arrow">→</span><span class="micro">move along X</span></div><p style="margin-top:4px"><span class="key light">Shift</span> makes smaller movements.</p></div>
+                <div>
+                  <h3>Grab <span style="font-weight:normal;">(or "move", "translate")</span></h3>
+                  <p>Press <span class="key">G</span> to grab.</p>
+                  <p>Optionally add <span class="key">X</span>, <span class="key">Y</span>, or <span class="key">Z</span> to constrain to an axis.</p>
+                  <p><strong>Example:</strong>
+                    Tap <span class="keys"><span class="key">G</span> then <span class="key">X</span> to move along X</span>
+                  </p>
+                  <p>Hold <span class="key light">Shift</span> makes smaller movements.</p>
+                </div>
               </div>
               <div class="transform">
                 <div class="letter">R</div>
-                <div><h3>Rotate</h3><p>Press <span class="key">R</span> to rotate. Add <span class="key">X</span>, <span class="key">Y</span>, or <span class="key">Z</span> to rotate around that axis.</p><div class="sequence"><span class="keys"><span class="key">R</span><span class="plus">+</span><span class="key">X</span></span><span class="arrow">→</span><span class="micro">rotate around X</span><span class="keys" style="margin-left:7px"><span class="key">R</span><span class="plus">+</span><span class="key">R</span></span><span class="arrow">→</span><span class="micro">free rotate</span></div></div>
+                <div>
+                  <h3>Rotate</h3>
+                  <p>Press <span class="key">R</span> to rotate.</p>
+                  <p>Optionally add <span class="key">X</span>, <span class="key">Y</span>, or <span class="key">Z</span> to select axis of rotation.</p>
+                  <p><strong>Example:</strong> Tap <span class="keys"><span class="key">R</span> then <span class="key">X</span> to rotate around X</span><span class="keys" style="margin-left:7px"></p>
+                  <p>Hit <span class="key">R</span> <strong>twice</strong> to rotate freely.</span></p>
+                </div>
               </div>
               <div class="transform">
                 <div class="letter">S</div>
-                <div><h3>Scale</h3><p>Press <span class="key">S</span> to make the object larger or smaller. Add <span class="key">X</span>, <span class="key">Y</span>, or <span class="key">Z</span> to stretch on one axis.</p><div class="sequence"><span class="keys"><span class="key">S</span><span class="plus">+</span><span class="key">X</span></span><span class="arrow">→</span><span class="micro">stretch along X</span></div></div>
+                <div>
+                  <h3>Scale</h3>
+                  <p>Press <span class="key">S</span> to make the object larger or smaller.</p>
+                  <p>Optionally add <span class="key">X</span>, <span class="key">Y</span>, or <span class="key">Z</span> to stretch on one axis.</p>
+                  <p><strong>Example:</strong> Tap <span class="keys"><span class="key">S</span> then <span class="key">X</span> to stretch along X</span></p>
               </div>
             </div>
-            <div class="axis-note"><strong>Finish or undo:</strong> <span class="key light">Enter</span> commits a move, rotation, or scale. <span class="key light">Esc</span> backs out and reverts it.</div>
           </div>
+          <div class="axis-note"><strong>Finish or undo:</strong> <span class="key light">Enter</span> commits the operation. <span class="key light">Esc</span> backs out and reverts the change.</div>
         </article>
       </div>
 
